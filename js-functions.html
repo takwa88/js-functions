@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fun JS Functions</title>
+  <style>
+    /* Page background and text */
+    body {
+      font-family: Arial;
+      background-color: #f0f8ff; /* Light blue background */
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333; /* Dark gray text */
+    }
+
+    /* Style for buttons */
+    button {
+      margin: 5px;
+      padding: 10px;
+      background-color: #4CAF50; /* Green */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049; /* Darker green when mouse is over */
+    }
+
+    /* Style for result box */
+    .result {
+      margin-top: 10px;
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main title -->
+  <h1>🧠 JavaScript Mini Functions</h1>
+
+  <!-- Buttons to launch each function -->
+  <button onclick="reverseString()">🔁 Reverse String</button>
+  <button onclick="countCharacters()">🔢 Count Characters</button>
+  <button onclick="capitalizeWords()">🔠 Capitalize Words</button>
+  <button onclick="findMaxMin()">📈 Find Max & Min</button>
+  <button onclick="sumArray()">➕ Sum Array</button>
+  <button onclick="filterEven()">⚡ Filter Even</button>
+  <button onclick="calculateFactorial()">🧮 Factorial</button>
+  <button onclick="checkPrime()">🔍 Prime Check</button>
+  <button onclick="generateFibonacci()">🔁 Fibonacci</button>
+
+  <!-- Box where results will appear -->
+  <div class="result" id="output">Results will appear here...</div>
+
+  <script>
+    // 1. Reverse a string
+    function reverseString() {
+      let text = prompt("Enter a word:");
+      let result = text.split('').reverse().join('');
+      document.getElementById("output").innerText = "Reversed: " + result;
+    }
+
+    // 2. Count characters in a string
+    function countCharacters() {
+      let text = prompt("Enter text:");
+      document.getElementById("output").innerText = "Number of characters: " + text.length;
+    }
+
+    // 3. Capitalize the first letter of each word
+    function capitalizeWords() {
+      let sentence = prompt("Enter a sentence:");
+      let result = sentence
+        .split(" ") // Cut into words
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter
+        .join(" "); // Join the words back
+      document.getElementById("output").innerText = "Capitalized: " + result;
+    }
+
+    // 4. Find max and min from numbers
+    function findMaxMin() {
+      let input = prompt("Enter numbers separated by commas (e.g. 4,6,2):");
+      let arr = input.split(",").map(Number); // Convert to array of numbers
+      let max = Math.max(...arr); // Max value
+      let min = Math.min(...arr); // Min value
+      document.getElementById("output").innerText = "Max: " + max + ", Min: " + min;
+    }
+
+    // 5. Sum all numbers in array
+    function sumArray() {
+      let input = prompt("Enter numbers (comma-separated):");
+      let arr = input.split(",").map(Number);
+      let sum = arr.reduce((total, num) => total + num, 0); // Add all values
+      document.getElementById("output").innerText = "Sum: " + sum;
+    }
+
+    // 6. Filter only even numbers
+    function filterEven() {
+      let input = prompt("Enter numbers (comma-separated):");
+      let arr = input.split(",").map(Number);
+      let evens = arr.filter(n => n % 2 === 0); // Keep only even numbers
+      document.getElementById("output").innerText = "Even numbers: " + evens.join(", ");
+    }
+
+    // 7. Calculate factorial (n!)
+    function calculateFactorial() {
+      let n = parseInt(prompt("Enter a number:"));
+      let fact = 1;
+      for (let i = 2; i <= n; i++) {
+        fact *= i; // Multiply by each number from 2 to n
+      }
+      document.getElementById("output").innerText = "Factorial of " + n + " is: " + fact;
+    }
+
+    // 8. Check if number is prime
+    function checkPrime() {
+      let num = parseInt(prompt("Enter a number:"));
+      let isPrime = num > 1;
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          isPrime = false;
+          break; // Not prime if divisible
+        }
+      }
+      document.getElementById("output").innerText = num + (isPrime ? " is a prime number." : " is NOT a prime number.");
+    }
+
+    // 9. Generate Fibonacci sequence
+    function generateFibonacci() {
+      let n = parseInt(prompt("How many terms?"));
+      let seq = [0, 1];
+      for (let i = 2; i < n; i++) {
+        seq.push(seq[i - 1] + seq[i - 2]); // Each number is sum of two before
+      }
+      document.getElementById("output").innerText = "Fibonacci (" + n + " terms): " + seq.slice(0, n).join(", ");
+    }
+  </script>
+
+</body>
+</html>
